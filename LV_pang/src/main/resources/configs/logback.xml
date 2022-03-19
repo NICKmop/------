@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration scan="true" scanPeriod="60 seconds">
+	<!-- 전체 로그 레벨 설정(info, debug, trace)-->
+	<property name="LOG_LEVEL" value="debug"/>
+	<!-- Read https://github.com/Tuxdude/logback-colorizer/blob/master/README.md for available colors -->
+	<property scope="context" name="COLORIZER_COLORS" value="boldwhite@red, boldwhite@yellow, boldblack@, cyan@, green@" />
+	<conversionRule conversionWord="colorize" converterClass="org.tuxdude.logback.extensions.LogColorizer" />
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-12.12thread] %green(-%mdc{extension}-) %gray(%mdc{connectionId}) %colorize(%-5level) %-37logger{36} \(%line\) %colorize(%msg) %n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./logs/pangData.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<FileNamePattern>./logs/%d{yyyy-MM-dd}/pangData_${HOSTNAME}.%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>
+			<!-- set maximum file size -->
+			<maxFileSize>100MB</maxFileSize>
+			<!-- keep x days' worth of history -->
+			<maxHistory>90</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-37logger{36} \(%line\) %msg%n</Pattern>
+		</layout>
+		<append>true</append>
+	</appender>
+	
+	<appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./logs/pangData_.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<FileNamePattern>./logs/%d{yyyy-MM-dd}/pangData.%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>
+			<!-- set maximum file size -->
+			<maxFileSize>100MB</maxFileSize>
+			<!-- keep x days' worth of history -->
+			<maxHistory>90</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-37logger{36} %msg%n</Pattern>
+		</layout>
+		<append>true</append>
+	</appender>
+	
+	<!-- application logging -->		
+	<if condition='property("LOG_LEVEL").equals("debug")'>
+		<then>
+			<logger name="com.kt" level="debug" additivity="false">
+				<appender-ref ref="FILE" />
+				<appender-ref ref="STDOUT" />
+			</logger>
+		</then>
+		<else>
+			<if condition='property("LOG_LEVEL").equals("trace")'>
+				<then>
+					<logger name="com.kt" level="trace" additivity="false">
+						<appender-ref ref="FILE" />
+						<appender-ref ref="STDOUT" />
+					</logger>
+				</then>
+				<else>
+					<logger name="com.kt" level="info" additivity="false">
+						<appender-ref ref="FILE" />
+						<appender-ref ref="STDOUT" />
+					</logger>
+				</else>
+			</if>
+		</else>
+	</if>
+	
+	<!-- spring logging -->
+	<if condition='property("LOG_LEVEL").equals("debug")'>
+		<then>
+			<logger name="org.springframework" level="debug" additivity="false">
+				<appender-ref ref="FILE" />
+				<appender-ref ref="STDOUT" />
+			</logger>
+		</then>
+		<else>
+			<if condition='property("LOG_LEVEL").equals("trace")'>
+				<then>
+					<logger name="org.springframework" level="trace" additivity="false">
+						<appender-ref ref="FILE" />
+						<appender-ref ref="STDOUT" />
+					</logger>
+				</then>
+				<else>
+					<logger name="org.springframework" level="info" additivity="false">
+						<appender-ref ref="FILE" />
+						<appender-ref ref="STDOUT" />
+					</logger>
+				</else>
+			</if>
+		</else>
+	</if>
+	
+	<!-- Elasticsearch -->
+	<logger name="org.springframework.data.convert.CustomConversions" level="error" additivity="false">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<root level="error">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="FILEERROR" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

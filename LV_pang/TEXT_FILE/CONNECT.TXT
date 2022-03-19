@@ -1,0 +1,5 @@
+TERMINAL에서 mysql 접속
+SHOW DATABASES; -- mysql 상 존재하는 데이터베이스
+use pangDataSTORAGE -- 우리가 사용하고자하는 데이터베이스 접근
+show tables; --데이터베이스 내 존재하는 테이블 확인
+
