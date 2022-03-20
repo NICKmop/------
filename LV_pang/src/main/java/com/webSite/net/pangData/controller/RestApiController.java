@@ -1,4 +1,4 @@
-package com.pangData.net.controller;
+package com.webSite.net.pangData.controller;
 
 // import com.pangData.net.service.RestPangService;
 

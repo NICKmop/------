@@ -1,4 +1,4 @@
-package com.pangData.net.controller;
+package com.webSite.net.pangData.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
