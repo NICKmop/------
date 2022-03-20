@@ -8,7 +8,9 @@
     <meta name="description" content="웹페이지.">
     <!-- css -->
     <link rel="stylesheet" href="../../static/common/css/default.css" as="style">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
+    
 </head>
 <body>
     <div id="main_location">
@@ -23,9 +25,27 @@
                     </div>
                 </div>
             </header>
-            <article class="pangData">pangData목록</article>
-            <article class="미정">4</article>
+            <article class="pangData">
+                <div class="swiper-container" style="height:100%">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            pangData테이블
+                        </div>
+                        <div class="swiper-slide">
+                            pangData 시작 화 그래프
+                        </div>
+                        <!-- <div class="swiper-slide">
+                        </div> -->
+                        <!-- <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div> -->
+                    </div>
+                </div>
+            </article>
+            <article class="미정">원하는 페이지 작성</article>
         </div>
     </div>
+    <!-- js -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="../../static/common/js/swiper.js"></script>
 </body>
 </html>
