@@ -1,6 +1,6 @@
 com\webSite\net\Application.class
-com\webSite\net\pangData\controller\RestController.class
 com\webSite\net\pangData\service\RestPangServicelmpl.class
 com\webSite\net\pangData\model\dao\pandDataMapper.class
+com\webSite\net\main\controller\mainController.class
 com\webSite\net\pangData\service\RestPangService.class
 com\webSite\net\pangData\controller\RestApiController.class
