@@ -19,6 +19,7 @@ body{
     background-color: #E9967A;
     color: aliceblue;
     height: 50px;
+    z-index: 10;
 }
 .main_header_content{
     display: flex;
@@ -47,12 +48,14 @@ body{
     width: 100%;
     height: 860px;
     background-color: whitesmoke;
+    border: 1px solid black;
+    z-index: 9;
 }
 .pangTable{
     /* border: 1px solid black; */
     position: absolute;
     top: 50%;
-    right: 41%;
+    right: 39%;
     text-align: center;
     margin-top: -110px;
     color: #E9967A;
@@ -75,7 +78,10 @@ table.type08 {
     text-align: center;
     line-height: 1.5;
     border-left: 1px solid #ccc;
-    margin: 20px 10px;
+    overflow-y: auto;
+    height: 837px;
+    width: 350px;
+    display: block;
 }
   
 table.type08 thead th {
