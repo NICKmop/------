@@ -7,8 +7,12 @@ $(document).ready(function(){
         window.location.reload();
     })
 
-    $("#keyword").keyup(function() {
-        var k = $(this).val();
-        console.log(k);
-    })
+        $("#keyword").keyup(function() {
+            var k = $(this).val();
+            $(".type08 > tbody > tr").hide();
+
+            var temp = $(".type08 > tbody > tr > th:contains('" + k + "')");
+
+            $(temp).parent().show();
+        })
 });

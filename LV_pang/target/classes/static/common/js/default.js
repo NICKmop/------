@@ -1,10 +1,14 @@
 $(document).ready(function(){
     $('.pangTable').click(function(){
-        $('.pangTable').load("../templates/pangData/pangTable.html");
+        $('.pangHtmlTable').load("../templates/pangData/pangTable.html");
+        $('.pangTable').hide();
     })
-})
+    $('.pangHtmlTable').dblclick(function(){
+        window.location.reload();
+    })
 
-// function pangTable(){
-    // alert("sss");
-//     window.location.href = 'https://hianna.tistory.com'
-// }
+    $("#keyword").keyup(function() {
+        var k = $(this).val();
+        console.log(k);
+    })
+});
