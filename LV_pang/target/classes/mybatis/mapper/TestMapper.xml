@@ -3,8 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.webSite.net.pangData.model.dao.pandDataMapper">
-  <select id="getAllDataList" resultType="com.example.demo.model.aws.dto.portfolio">
+<mapper namespace="com.webSite.net.portfolio.model.dao.TestMapper">
+  <select id="getAllDataList" resultType="com.webSite.net.portfolio.model.dto.TestDao">
     SELECT * FROM pangData;
   </select>
 
